@@ -9,6 +9,7 @@ The purpose of this challenge is to create a timed quiz on JavaScript fundamenta
 * JavaScript
 
 ## Website
+https://johnproodian.github.io/code-quiz-challenge/
 
 ## To Do
 
