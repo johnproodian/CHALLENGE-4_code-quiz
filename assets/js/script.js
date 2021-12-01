@@ -1,12 +1,17 @@
-var timerEl = document.querySelector("#timer");
-var buttonEl = document.querySelector("#start-button");
+var timerEl = document.getElementById('timer');
+var buttonEl = document.getElementById('start-button');
 
 var timer = function() {
-    var timeLeft = 75;
-    var timeInterval = setInterval(function(
+    var timeLeft = 10;
+    var timeInterval = setInterval(function() {
         timerEl.textContent = "Time: " + timeLeft;
         timeLeft = timeLeft - 1;
-    ), 1000)
+        console.log(timeLeft);
+        if (timeLeft < 0) {
+            clearInterval(timeInterval);
+        }
+    }, 1000);
+    
 }
 
-timerEl.addEventListener("click", timer());
+buttonEl.addEventListener("click", timer);
