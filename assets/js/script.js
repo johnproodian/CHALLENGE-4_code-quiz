@@ -1,3 +1,21 @@
+var qBank = [ 
+    {
+        q: "This is the first question?"
+        a1: "This is the first answer."
+        a2: "This is the second answer."
+        a3: "This is the third answer."
+        a4: "This is the fourth question."
+    },
+    {
+        q: "This is the second question?"
+        a1: "This is the first answer."
+        a2: "This is the second answer."
+        a3: "This is the third answer."
+        a4: "This is the fourth question."
+    }
+    
+]
+
 var timerEl = document.getElementById('timer');
 var startButtonEl = document.getElementById('start-button');
 
