@@ -109,34 +109,32 @@ var timer = function() {
 
             var assignClass = function(c) {
                 if (c === 1) {
-                    answerBtn1El.className += 'correct',
-                    answerBtn2El.className += 'wrong',
-                    answerBtn3El.className += 'wrong',
-                    answerBtn4El.className += 'wrong'
+                    answerBtn1El.className = 'correct',
+                    answerBtn2El.className = 'wrong',
+                    answerBtn3El.className = 'wrong',
+                    answerBtn4El.className = 'wrong'
                 }
                 else if (c === 2) {
-                    answerBtn1El.className += 'wrong',
-                    answerBtn2El.className += 'correct',
-                    answerBtn3El.className += 'wrong',
-                    answerBtn4El.className += 'wrong'
+                    answerBtn1El.className = 'wrong',
+                    answerBtn2El.className = 'correct',
+                    answerBtn3El.className = 'wrong',
+                    answerBtn4El.className = 'wrong'
                 }
                 else if (c === 3) {
-                    answerBtn1El.className += 'wrong',
-                    answerBtn2El.className += 'wrong',
-                    answerBtn3El.className += 'correct',
-                    answerBtn4El.className += 'wrong'
+                    answerBtn1El.className = 'wrong',
+                    answerBtn2El.className = 'wrong',
+                    answerBtn3El.className = 'correct',
+                    answerBtn4El.className = 'wrong'
                 }
                 else if (c === 4) {
-                    answerBtn1El.className += 'wrong',
-                    answerBtn2El.className += 'wrong',
-                    answerBtn3El.className += 'wrong',
-                    answerBtn4El.className += 'correct'
+                    answerBtn1El.className = 'wrong',
+                    answerBtn2El.className = 'wrong',
+                    answerBtn3El.className = 'wrong',
+                    answerBtn4El.className = 'correct'
                 }
-                console.log("1 = " + answerBtn1El, "2 = " + answerBtn2El, "3 = " + answerBtn3El, "4 = " + answerBtn4El);
             }
 
             assignClass(assignClassPicker);
-            console.log("class names: " + answerBtn1El);
 
             
             
@@ -195,24 +193,13 @@ startButtonEl.addEventListener("click", timer);
 //==========
 
 // So far, so good. 
+// Classes change. Wooooo!
+
 // Next:
-    // What I want to do next is to have the classes of the the buttons change ('correct'/'wrong') at each question.
-    // Hmmm. 
-    // At each click, add 1 to the question-select variable.
-    // At the start of the quiz function, use if or while (?) to assign classes.
-        // if (question-select === 1, 3) {Btn1, Btn2, Btn4 .className = 'wrong'; Btn3.className = 'correct'}
-        // might have to remove classes as well...
-// Then:
-    // Add questions and answers to the qBank
-// Then:
-    // Figure out how to add to local storage and do inputs for high score
-// Then:
-    // Figure out end of game stuff--what happens if time runs out, what happens if all questions answered, etc.
-
-// I can't believe I might figure this out soon!!!!!!!!
-
-
-
+    // Figure out local storage and adding a form that collects high scores and initials to store there.
+    // Figure out end-game things: what happens when time runs out, when questions are done (how about a bonus for finishing early?)
+    // Add the JS questions--maybe 10?
+    
 
 
 
