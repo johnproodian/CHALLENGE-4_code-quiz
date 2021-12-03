@@ -134,8 +134,7 @@ var timer = function() {
                 }
             }
 
-            assignClass(assignClassPicker);
-
+            assignClass(assignClassPicker); 
             
             
             // listen for the different 'clicks', adjust points or time based on right or wrong answers
