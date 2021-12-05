@@ -13,11 +13,8 @@ https://johnproodian.github.io/code-quiz-challenge/
 
 ## To Do
 
-* Add HTML - not too much since most will be dynamically added.
-* Add CSS - keep it basic (CSS isn't my strong suit)
 * Javascript:
-    * Timer:
-        * countdown function, dynamically write the timeLeft variable--setInterval, clearInterval, .textContent, etc.
+   
     * Quiz: 
         * Dynamically create text to ask each question:
             * standard--H1/2 is question, p is decription (only in beginning), button are the options, border w/ p (or h2?) gives 'correct!' or 'wrong!' at the bottom

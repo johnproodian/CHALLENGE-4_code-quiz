@@ -33,12 +33,18 @@ var  score = 0;
 // define the timer function which will start the timer when the start button is clicked
 var timer = function() {
     // start the timer at 75s and have it count down until it reads 0
-    var timeLeft = 75;
+    var timeLeft = 15;
     var timeInterval = setInterval(function() {
         timerEl.textContent = "Time: " + timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timeInterval);
             timerEl.textContent = "Time: 0";
+            // Create a function that brings them to a page that says:
+                // H1: All Done!
+                // p: Your final score is 'score'.
+                // Text before form: Enter initials [form] [submit btn]
+            // Create an event listener (below?) to send them to a new page with submit
+
         }
         timeLeft = timeLeft - 1;
         
@@ -57,7 +63,7 @@ var timer = function() {
     var startQuiz = function() {
         // function to dynamically remove the p element and original start button once the quiz starts
         var rmvPandBtnEls = function() {
-            PEl.parentNode.removeChild(PEl);
+            PEl.textContent = "";
             startBtnLiEl.parentNode.removeChild(startBtnLiEl);
         }   
         rmvPandBtnEls();
@@ -69,8 +75,23 @@ var timer = function() {
             // dynamically add HTML elements and text that replaces that of the current elements
             // edit h1 to contain the question - 0, 0+5, 0+10, etc., items in the qBank array
             quizQuestionEl.textContent = qBank[a];
+
         
-            // dynamically create and fill the first answer button - 0+1,0+6,0+11, etc.
+            // // ***Create a function with a for loop that can iterate through the next four groups of things
+            // var createAnsOptions = function() {
+            //     for (i = 0; i < 4; i++) {
+            //         var answerLiEl = document.createElement("li");
+            //         answerLiEl.className = 'option';
+            //         var answerBtnEl = document.createElement("button");
+            //         answerBtnEl.textContent = qBank[a + 1]
+            //         answerLiEl.appendChild(answerBtnEl);
+            //         answerOptionEl.appendChild(answerLiEl);
+            //         questionIndex = questionIndex + 1;
+            //     }
+            // }
+            // createAnsOptions();
+                
+            // // dynamically create and fill the first answer button - 0+1,0+6,0+11, etc.
             var answerLi1El = document.createElement("li");
             answerLi1El.className = 'option';
             var answerBtn1El = document.createElement("button");
@@ -104,7 +125,7 @@ var timer = function() {
 
             // assign 'correct' and 'wrong' classes to buttons of correct and wrong answers
             var classAssign = [4, 1, 2, 2];
-            assignClassPicker = classAssign[classPicker];
+            var assignClassPicker = classAssign[classPicker];
             
 
             var assignClass = function(c) {
@@ -189,6 +210,39 @@ var timer = function() {
     
 startButtonEl.addEventListener("click", timer);
 
+
+// What would the function look like to go to the HS form
+var getScoreInitials = function() {
+    rmvOldQ();
+    quizQuestionEl.textContent = "All done!";
+    PEl.textContent = "Your final score is 22."
+    // look at taskinator modules to create the form here.
+}
+
+
+// ==========
+
+// So, what is supposed to happen w/ keeping track of scores, local storage, etc.?
+    // Games ends--run out of Q's, run out of time [if statement for both?]
+    // Take value of score variable at that point and display a message (confirm) that says the quiz is over and your final score is 'score'; do you want to save it?
+    // If no, display message to come back or ask to try again.
+    // If yes, take user to screen where they can create a high score item just like a taskinator to-do
+        // Dynamically change html/css to something more like taskinator:
+            // h1 (stay), p (add back? don't remeove it in the first place but make it blank?), form (new element), submit btn (redo it or don't get rid of it in the first place?)
+        // Get initials with form
+        // Store initials in a variable and make an object w/ the score variable?
+        // Then store them together (as a string) in localStorage
+    // Then, take them to the high score page; two options:
+        // (1) create a new html page for the high scores
+        // (2) dynamically remove and add the html and css to present high score; have an event listener for coming home and restarting...??
+            // I say stick with the first one...
+        // MOdel the new high scores page on the taskinator page
+
+
+
+
+
+
 //==========
 
 // So far, so good. 
@@ -198,6 +252,7 @@ startButtonEl.addEventListener("click", timer);
     // Figure out local storage and adding a form that collects high scores and initials to store there.
     // Figure out end-game things: what happens when time runs out, when questions are done (how about a bonus for finishing early?)
     // Add the JS questions--maybe 10?
+    // Add adjustments from lessons I've completed since starting the challenge--to make code a lot cleaner, to have better solutions 
     
 
 
