@@ -38,19 +38,10 @@ var startBtnLiEl = document.getElementById('start-btn-li');
 var mainEl = document.getElementById('main');
 var answerOptionEl = document.getElementById('answer-options');
 
-// define the timer function which will start the timer when the start button is clicked
-var timer = function() {
-    // start the timer at 75s and have it count down until it reads 0
-    // var endGame = function() {
-    //     quizQuestionEl.textContent = "All Done!";
+var initialsAndScores = [];
 
-
-    // }
-    var timeLeft = 5;
-    var timeInterval = setInterval(function() {
-        timerEl.textContent = "Time: " + timeLeft;
-        if (timeLeft <= 0) {
-            clearInterval(timeInterval);
+var stopTimer = function(a) {
+    clearInterval(a);
             timerEl.textContent = "Time: 0";
             quizQuestionEl.textContent = "All Done!"
             PEl.textContent = "Your final score is " + score + ".";
@@ -74,24 +65,38 @@ var timer = function() {
             scoreForm.appendChild(submitScoreBtn);
             mainEl.appendChild(scoreForm);
 
+            
+
             submitScoreBtn.addEventListener("click", function(event) {
                 event.preventDefault();
                 var initials = document.querySelector("input[name='initials']");
-                console.log(initials);
-                var initialsAndScore = [initials.value, score]
-                localStorage.setItem("initials and score", initialsAndScore);
+                console.log("initials = " + initials);
+                console.log("scores = " + score);
+        
+                initialsAndScores.push({
+                    inits: initials.value,
+                    scores: score
+                });
+                console.log(initialsAndScores);
+                localStorage.setItem("initialsAndScores", JSON.stringify(initialsAndScores));
+
+                window.location.href = 'high-score.html';
+
+
                 
             })
+}
 
-
-
-
-            // Create a function that brings them to a page that says:
-                // H1: All Done!
-                // p: Your final score is 'score'.
-                // Text before form: Enter initials [form] [submit btn]
-            // Create an event listener (below?) to send them to a new page with submit
-
+// define the timer function which will start the timer when the start button is clicked
+var timer = function() {
+    // start the timer at 75s and have it count down until it reads 0
+    
+    var timeLeft = 5;
+    var timeInterval = setInterval(function() {
+        console.log(timeLeft);
+        timerEl.textContent = "Time: " + timeLeft;
+        if (timeLeft <= 0) {
+            stopTimer(timeInterval);
         }
         timeLeft = timeLeft - 1;
         
@@ -212,6 +217,9 @@ var timer = function() {
                 score = score + 5;
                 rmvOldQ();
                 classPicker = classPicker + 1;
+                if (classPicker >= classAssign.length) {
+                    stopTimer(timeInterval);
+                }
                 quiz(questionIndex);
                 console.log("Score: " + score);
             })
@@ -219,6 +227,9 @@ var timer = function() {
                 timeLeft = timeLeft - 15;
                 rmvOldQ();
                 classPicker = classPicker + 1;
+                if (classPicker >= classAssign.length) {
+                    stopTimer(timeInterval);
+                }
                 quiz(questionIndex);
                 console.log("Score: " + score);
             })
@@ -226,6 +237,9 @@ var timer = function() {
                 timeLeft = timeLeft - 15;
                 rmvOldQ();
                 classPicker = classPicker +1;
+                if (classPicker >= classAssign.length) {
+                    stopTimer(timeInterval);
+                }
                 quiz(questionIndex);
                 console.log("Score: " + score);
             })
@@ -233,6 +247,8 @@ var timer = function() {
                 timeLeft = timeLeft - 15;
                 rmvOldQ();
                 classPicker = classPicker +1;
+                if (classPicker >= classAssign.length) {
+                    stopTimer(timeInterval);}
                 quiz(questionIndex);
                 console.log("Score: " + score);
             })

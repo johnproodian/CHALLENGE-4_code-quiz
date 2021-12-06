@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>High Score</title>
     <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+        li {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,10 +36,20 @@
                 <a href="index.html" class="option" id="go-back-btn">Go back</a>
             </li>
             <li>
-                <a href="#" class="option" id="clear-btn">Clear high scores</a>
+                <button type="button" class="option" id="clear-btn">Clear high scores</button>
             </li>
         </ul>
     </main>
+    <script>
+        var clearBtn = document.getElementById('clear-btn');
+        var clearHighScores = function() {
+
+        }
+        // JS basically should:
+            // (1) read the local storage
+            // (2) take the contents of the 'initials and score' key and convert it into an object--every first is the initial property and every second is the score value
+            // (3) for every pair, create (the equivalent of) the to-do item
+    </script>
 </body>
     
 </html>
