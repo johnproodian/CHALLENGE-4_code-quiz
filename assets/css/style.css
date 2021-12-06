@@ -5,6 +5,7 @@ body {
 ul {
     list-style: none;
 }
+
 header ul {
     display: flex;
     flex-wrap: wrap;
@@ -25,16 +26,56 @@ main {
    
 }
 
-ul li button {
+p {
+    font-size: 1.5em;
+}
+
+input {
+    font-size: 24px;
+}
+
+.option {
     background-color: #52307c;
     color: white;
     padding: 10px 20px;
     font-size: 14px;
     border-radius: 8px;
     border: none;
+    margin: 5px 0;
 }
 
-
-.option {
+#start-button {
+    background-color: #52307c;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: none;
     margin: 5px 0;
+}
+
+#score-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#go-back-btn,
+#clear-btn {
+    margin: 5px;
+    text-decoration: none;
+}
+
+.score-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#input {
+    height: 2em;
+}
+
+.form-items {
+    margin: 5px;
 }

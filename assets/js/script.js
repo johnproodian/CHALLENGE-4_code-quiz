@@ -30,15 +30,62 @@ var qBank = [
 // starting score for the user
 var  score = 0;
 
+// get the various elements that will be dynamically manipulated to go through the quiz
+var quizQuestionEl = document.getElementById('quiz-question');
+var PEl = document.getElementById('blank-p-element');
+var startBtnLiEl = document.getElementById('start-btn-li');
+// Do I need this main element?
+var mainEl = document.getElementById('main');
+var answerOptionEl = document.getElementById('answer-options');
+
 // define the timer function which will start the timer when the start button is clicked
 var timer = function() {
     // start the timer at 75s and have it count down until it reads 0
-    var timeLeft = 15;
+    // var endGame = function() {
+    //     quizQuestionEl.textContent = "All Done!";
+
+
+    // }
+    var timeLeft = 5;
     var timeInterval = setInterval(function() {
         timerEl.textContent = "Time: " + timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timeInterval);
             timerEl.textContent = "Time: 0";
+            quizQuestionEl.textContent = "All Done!"
+            PEl.textContent = "Your final score is " + score + ".";
+            var ulEl = document.getElementById('answer-options');
+            ulEl.parentNode.removeChild(ulEl);
+            var submitScoreBtn = document.createElement("button");
+            submitScoreBtn.className = 'option form-items';
+            submitScoreBtn.textContent = 'Submit';
+            var initialInput = document.createElement("input");
+            initialInput.type = 'text';
+            initialInput.name = 'initials';
+            initialInput.id = 'input';
+            initialInput.className = 'form-items';
+            var formPEl = document.createElement('p');
+            formPEl.textContent = "Enter initials:";
+            formPEl.className = "form-items";
+            var scoreForm = document.createElement("form");
+            scoreForm.className = 'score-form';
+            scoreForm.appendChild(formPEl);
+            scoreForm.appendChild(initialInput);
+            scoreForm.appendChild(submitScoreBtn);
+            mainEl.appendChild(scoreForm);
+
+            submitScoreBtn.addEventListener("click", function(event) {
+                event.preventDefault();
+                var initials = document.querySelector("input[name='initials']");
+                console.log(initials);
+                var initialsAndScore = [initials.value, score]
+                localStorage.setItem("initials and score", initialsAndScore);
+                
+            })
+
+
+
+
             // Create a function that brings them to a page that says:
                 // H1: All Done!
                 // p: Your final score is 'score'.
@@ -50,13 +97,7 @@ var timer = function() {
         
     }, 1000);
  
-    // get the various elements that will be dynamically manipulated to go through the quiz
-    var quizQuestionEl = document.getElementById('quiz-question');
-    var PEl = document.getElementById('blank-p-element');
-    var startBtnLiEl = document.getElementById('start-btn-li');
-    // Do I need this main element?
-    // var mainEl = document.getElementById('main');
-    var answerOptionEl = document.getElementById('answer-options');
+    
     
      
     // define function that removes original html and starts quiz (function)
@@ -93,7 +134,6 @@ var timer = function() {
                 
             // // dynamically create and fill the first answer button - 0+1,0+6,0+11, etc.
             var answerLi1El = document.createElement("li");
-            answerLi1El.className = 'option';
             var answerBtn1El = document.createElement("button");
             answerBtn1El.textContent = qBank[a + 1];
             answerLi1El.appendChild(answerBtn1El);
@@ -101,7 +141,6 @@ var timer = function() {
 
             // create and fill the second answer  - - 0+2,0+7,0+12, etc.
             var answerLi2El = document.createElement("li");
-            answerLi2El.className = 'option'
             var answerBtn2El = document.createElement("button")
             answerBtn2El.textContent = qBank[a + 2];
             answerLi2El.appendChild(answerBtn2El);
@@ -109,7 +148,6 @@ var timer = function() {
         
             // create and fill the third answer button - 0+3,0+9,0+14, etc.
             var answerLi3El = document.createElement("li");
-            answerLi3El.className = 'option';
             var answerBtn3El = document.createElement("button");
             answerBtn3El.textContent = qBank[a + 3];
             answerLi3El.appendChild(answerBtn3El);
@@ -117,7 +155,6 @@ var timer = function() {
 
             // create and fill the fourth answer button - 0+4,0+10,0+15, etc.
             var answerLi4El = document.createElement('li')
-            answerLi4El.className = 'option';
             var answerBtn4El = document.createElement('button');
             answerBtn4El.textContent = qBank[a + 4];
             answerLi4El.appendChild(answerBtn4El);
@@ -130,28 +167,28 @@ var timer = function() {
 
             var assignClass = function(c) {
                 if (c === 1) {
-                    answerBtn1El.className = 'correct',
-                    answerBtn2El.className = 'wrong',
-                    answerBtn3El.className = 'wrong',
-                    answerBtn4El.className = 'wrong'
+                    answerBtn1El.className = 'correct option',
+                    answerBtn2El.className = 'wrong option',
+                    answerBtn3El.className = 'wrong option',
+                    answerBtn4El.className = 'wrong option'
                 }
                 else if (c === 2) {
-                    answerBtn1El.className = 'wrong',
-                    answerBtn2El.className = 'correct',
-                    answerBtn3El.className = 'wrong',
-                    answerBtn4El.className = 'wrong'
+                    answerBtn1El.className = 'wrong option',
+                    answerBtn2El.className = 'correct option',
+                    answerBtn3El.className = 'wrong option',
+                    answerBtn4El.className = 'wrong option'
                 }
                 else if (c === 3) {
-                    answerBtn1El.className = 'wrong',
-                    answerBtn2El.className = 'wrong',
-                    answerBtn3El.className = 'correct',
-                    answerBtn4El.className = 'wrong'
+                    answerBtn1El.className = 'wrong option',
+                    answerBtn2El.className = 'wrong option',
+                    answerBtn3El.className = 'correct option',
+                    answerBtn4El.className = 'wrong option'
                 }
                 else if (c === 4) {
-                    answerBtn1El.className = 'wrong',
-                    answerBtn2El.className = 'wrong',
-                    answerBtn3El.className = 'wrong',
-                    answerBtn4El.className = 'correct'
+                    answerBtn1El.className = 'wrong option',
+                    answerBtn2El.className = 'wrong option',
+                    answerBtn3El.className = 'wrong option',
+                    answerBtn4El.className = 'correct option'
                 }
             }
 
@@ -201,8 +238,6 @@ var timer = function() {
             })
         }
         quiz(questionIndex);
-        
-      
     }
 
     startQuiz();
