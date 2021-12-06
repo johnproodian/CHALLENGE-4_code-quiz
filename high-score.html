@@ -30,7 +30,7 @@
 
     <main>
         <h1>High Scores</h1>
-        <ul></ul>
+        <ul id="high-score-list"></ul>
         <ul id="score-buttons">
             <li>
                 <a href="index.html" class="option" id="go-back-btn">Go back</a>
@@ -41,10 +41,34 @@
         </ul>
     </main>
     <script>
+        var loadScores = function() {
+            // get scores and initials from localStorage
+            var savedInitialsAndScores = localStorage.getItem("initialsAndScores");
+            if (!savedInitialsAndScores) {
+                return false;
+            }
+            // convert scores and initials from string format back into an array of objects
+            console.log("savedInitialsAndScores before: " + savedInitialsAndScores);
+            savedInitialsAndScores = JSON.parse(savedInitialsAndScores);
+            console.log(savedInitialsAndScores);
+            var highScoreList = document.getElementById('high-score-list');
+            // iterate through the scores and create initial-score elements on the page from it
+            for (i = 0; i < savedInitialsAndScores.length; i++) {
+                var scoreLiEl = document.createElement("li");
+                scoreLiEl.textContent = savedInitialsAndScores[i];
+                highScoreList.appendChild(scoreLiEl);
+
+
+            }
+        }
+        loadScores();
+        
+        
         var clearBtn = document.getElementById('clear-btn');
         var clearHighScores = function() {
-
+            
         }
+
         // JS basically should:
             // (1) read the local storage
             // (2) take the contents of the 'initials and score' key and convert it into an object--every first is the initial property and every second is the score value

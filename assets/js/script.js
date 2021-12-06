@@ -70,22 +70,26 @@ var stopTimer = function(a) {
             submitScoreBtn.addEventListener("click", function(event) {
                 event.preventDefault();
                 var initials = document.querySelector("input[name='initials']");
-                console.log("initials = " + initials);
-                console.log("scores = " + score);
         
                 initialsAndScores.push({
-                    inits: initials.value,
-                    scores: score
+                    "initials": initials.value,
+                    "score": score
                 });
-                console.log(initialsAndScores);
+
+                var savedInitialsAndScores = localStorage.getItem('initialsAndScores');
+                console.log("saved scores = " + savedInitialsAndScores);
+                if (savedInitialsAndScores) {
+                    initialsAndScores.push(savedInitialsAndScores);
+                }
+
                 localStorage.setItem("initialsAndScores", JSON.stringify(initialsAndScores));
 
                 window.location.href = 'high-score.html';
 
 
                 
-            })
-}
+            });
+};
 
 // define the timer function which will start the timer when the start button is clicked
 var timer = function() {
