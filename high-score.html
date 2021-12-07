@@ -15,18 +15,6 @@
 </head>
 
 <body>
-    <!-- <main>
-        <h1>High Scores</h1>
-        <ul></ul>
-        <ul id="score-buttons">
-            <li>
-                <a href="index.html"class="option" id="go-back-btn">Go back</button>
-            </li>
-            <li>
-                <a href="#" class="option" id="clear-btn">Clear high scores</button>
-            </li>
-        </ul>
-    </main> -->
 
     <main>
         <h1>High Scores</h1>
@@ -56,11 +44,6 @@
                 scoreLiEl.textContent = savedInitialsAndScores[i].inits + ": " + savedInitialsAndScores[i].sco;
                 highScoreList.appendChild(scoreLiEl);
             } 
-                
-            // if (!savedInitialsAndScores) {
-            //     return false;
-            // }
-            // convert scores and initials from string format back into an array of objects 
         }
         loadScores();
         
@@ -73,13 +56,8 @@
         clearBtn.addEventListener("click", clearHighScores());
         
 
-        // JS basically should:
-            // (1) read the local storage
-            // (2) take the contents of the 'initials and score' key and convert it into an object--every first is the initial property and every second is the score value
-            // (3) for every pair, create (the equivalent of) the to-do item
+        
     </script>
 </body>
     
 </html>
-
-<!-- Go back - clear high scores [button options]-->

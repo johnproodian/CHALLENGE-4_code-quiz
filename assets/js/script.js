@@ -44,7 +44,6 @@ var  score = 0;
 var quizQuestionEl = document.getElementById('quiz-question');
 var PEl = document.getElementById('blank-p-element');
 var startBtnLiEl = document.getElementById('start-btn-li');
-// Do I need this main element?
 var mainEl = document.getElementById('main');
 var answerOptionEl = document.getElementById('answer-options');
 
@@ -146,21 +145,6 @@ var timer = function() {
             // dynamically add HTML elements and text that replaces that of the current elements
             // edit h1 to contain the question - 0, 0+5, 0+10, etc., items in the qBank array
             quizQuestionEl.textContent = qBank[a];
-
-        
-            // // ***Create a function with a for loop that can iterate through the next four groups of things
-            // var createAnsOptions = function() {
-            //     for (i = 0; i < 4; i++) {
-            //         var answerLiEl = document.createElement("li");
-            //         answerLiEl.className = 'option';
-            //         var answerBtnEl = document.createElement("button");
-            //         answerBtnEl.textContent = qBank[a + 1]
-            //         answerLiEl.appendChild(answerBtnEl);
-            //         answerOptionEl.appendChild(answerLiEl);
-            //         questionIndex = questionIndex + 1;
-            //     }
-            // }
-            // createAnsOptions();
                 
             // // dynamically create and fill the first answer button - 0+1,0+6,0+11, etc.
             var answerLi1El = document.createElement("li");
