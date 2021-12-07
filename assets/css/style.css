@@ -79,3 +79,9 @@ input {
 .form-items {
     margin: 5px;
 }
+
+#high-score-list {
+    display: flex;
+    justify-content: center;
+
+}

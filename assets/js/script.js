@@ -4,27 +4,37 @@ var timerEl = document.getElementById('timer');
 var startButtonEl = document.getElementById('start-button');
 // create an array of all the questions and answers for select from below
 var qBank = [
-    "This is the first question?", 
-    "This is the 1-first answer.", 
-    "This is the 1-second answer.",
-    "This is the 1-third answer.",
-    "-This is the 1-fourth answer.",
-    "This is the second question?",
-    "-This is the 2-first answer.",
-    "This is the 2-second answer.",
-    "This is the 2-third answer.",
-    "This is the 2-fourth answer.",
-    "This is the third question?", 
-    "This is the 3-first answer.", 
-    "-This is the 3-second answer.",
-    "This is the 3-third answer.",
-    "This is the 3-fourth answer.",
-    "This is the fourth question?", 
-    "This is the 4-first answer.", 
-    "-This is the 4-second answer.",
-    "This is the 4-third answer.",
-    "This is the 4-fourth answer."
-    // 4, 1, 2, 2
+    "Arrays in JavaScript can be used to store ________.", 
+    "1. numbers and strings", 
+    "2. other arrays",
+    "3. boolesn",
+    "4. all of the above",
+    "String values must be enclosed within _______ when being assigned to varables.",
+    "1. commas",
+    "2. curly brackets",
+    "3. quotes",
+    "4. parentheses",
+    "A very useful tool used during development and debugging for printing content to the debugger is:", 
+    "1. JavaScript", 
+    "2. terminal/bash",
+    "3. for loops",
+    "4. console.log",
+    "The condition in an if / else statement is enclosed with _______.", 
+    "1. quotes", 
+    "2. curly brackets",
+    "3. parentheses",
+    "4. square brackets",
+    "A variable declared within a JavaScript function have ______ scope.",
+    "1. local",
+    "2. function",
+    "3. global",
+    "4. block",
+    "Which of the following is NOT an example of a primitive JavaScript data type?",
+    "1. object",
+    "2. string",
+    "3. boolean",
+    "4. null"
+    // 4, 3, 4, 3, 1, 1
 ]
 
 // starting score for the user
@@ -69,25 +79,36 @@ var stopTimer = function(a) {
 
             submitScoreBtn.addEventListener("click", function(event) {
                 event.preventDefault();
-                var initials = document.querySelector("input[name='initials']");
-        
-                initialsAndScores.push({
-                    "initials": initials.value,
-                    "score": score
-                });
+                var initials = document.querySelector("input[name='initials']").value;
 
-                var savedInitialsAndScores = localStorage.getItem('initialsAndScores');
-                console.log("saved scores = " + savedInitialsAndScores);
-                if (savedInitialsAndScores) {
-                    initialsAndScores.push(savedInitialsAndScores);
+                var initScoObj = {
+                    inits: initials,
+                    sco: score
                 }
 
-                localStorage.setItem("initialsAndScores", JSON.stringify(initialsAndScores));
+                var previousInitialsAndScores = localStorage.getItem("initialsAndScores");
+                if (previousInitialsAndScores) {
+                    previousInitialsAndScores = JSON.parse(previousInitialsAndScores);
+                    for (i = 0; i < previousInitialsAndScores; i++) {
+                        initialsAndScores.push(previousInitialsAndScores[i]);
+                    }
+                }
 
-                window.location.href = 'high-score.html';
+                initialsAndScores.push(initScoObj);
+                console.log("initialsAndScores: " + JSON.stringify(initialsAndScores));
 
 
                 
+                // var savedInitialsAndScores = localStorage.getItem('initialsAndScores');
+                // console.log("saved scores = " + savedInitialsAndScores);
+                // if (savedInitialsAndScores) {
+                //     initialsAndScores.push(savedInitialsAndScores);
+                // }
+                initialsAndScores = JSON.stringify(initialsAndScores);
+                localStorage.setItem("initialsAndScores", initialsAndScores);
+
+                window.location.href = 'high-score.html';
+    
             });
 };
 
@@ -95,7 +116,7 @@ var stopTimer = function(a) {
 var timer = function() {
     // start the timer at 75s and have it count down until it reads 0
     
-    var timeLeft = 5;
+    var timeLeft = 75;
     var timeInterval = setInterval(function() {
         console.log(timeLeft);
         timerEl.textContent = "Time: " + timeLeft;
@@ -170,7 +191,7 @@ var timer = function() {
             answerOptionEl.appendChild(answerLi4El);
 
             // assign 'correct' and 'wrong' classes to buttons of correct and wrong answers
-            var classAssign = [4, 1, 2, 2];
+            var classAssign = [4, 3, 4, 3, 1, 1];
             var assignClassPicker = classAssign[classPicker];
             
 
