@@ -31,8 +31,9 @@
     <script>
         var loadScores = function() {
             // get scores and initials from localStorage
-        
-            var savedInitialsAndScores = localStorage.getItem(JSON.parse("initialsAndScores"));
+            debugger;
+            var savedInitialsAndScores = localStorage.getItem("initialsAndScores");
+            savedInitialsAndScores = JSON.parse(savedInitialsAndScores);
             console.log("savedInitialsAndScores = " + savedInitialsAndScores);
            
             var highScoreList = document.getElementById('high-score-list');
