@@ -42,7 +42,7 @@ var  score = 0;
 
 // get the various elements that will be dynamically manipulated to go through the quiz
 var quizQuestionEl = document.getElementById('quiz-question');
-var PEl = document.getElementById('blank-p-element');
+var pEl = document.getElementById('blank-p-element');
 var startBtnLiEl = document.getElementById('start-btn-li');
 var mainEl = document.getElementById('main');
 var answerOptionEl = document.getElementById('answer-options');
@@ -53,7 +53,7 @@ var stopTimer = function(a) {
     clearInterval(a);
             timerEl.textContent = "Time: 0";
             quizQuestionEl.textContent = "All Done!"
-            PEl.textContent = "Your final score is " + score + ".";
+            pEl.textContent = "Your final score is " + score + ".";
             var ulEl = document.getElementById('answer-options');
             ulEl.parentNode.removeChild(ulEl);
             var submitScoreBtn = document.createElement("button");
@@ -112,7 +112,7 @@ var stopTimer = function(a) {
 };
 
 // define the timer function which will start the timer when the start button is clicked
-var timer = function() {
+var startTimer = function() {
     // start the timer at 75s and have it count down until it reads 0
     
     var timeLeft = 75;
@@ -133,13 +133,13 @@ var timer = function() {
     var startQuiz = function() {
         // function to dynamically remove the p element and original start button once the quiz starts
         var rmvPandBtnEls = function() {
-            PEl.textContent = "";
+            pEl.textContent = "";
             startBtnLiEl.parentNode.removeChild(startBtnLiEl);
         }   
         rmvPandBtnEls();
 
         var questionIndex = 0;
-        var classPicker = 0;
+        var correctAssignIndex = 0;
 
         var quiz = function(a) {
             // dynamically add HTML elements and text that replaces that of the current elements
@@ -175,11 +175,11 @@ var timer = function() {
             answerOptionEl.appendChild(answerLi4El);
 
             // assign 'correct' and 'wrong' classes to buttons of correct and wrong answers
-            var classAssign = [4, 3, 4, 3, 1, 1];
-            var assignClassPicker = classAssign[classPicker];
+            var correctAssign = [4, 3, 4, 3, 1, 1];
+            var assignCorrectPicker = correctAssign[correctAssignIndex];
             
 
-            var assignClass = function(c) {
+            var assignCorrect = function(c) {
                 if (c === 1) {
                     answerBtn1El.className = 'correct option',
                     answerBtn2El.className = 'wrong option',
@@ -206,7 +206,7 @@ var timer = function() {
                 }
             }
 
-            assignClass(assignClassPicker); 
+            assignCorrect(assignCorrectPicker); 
             
             
             // listen for the different 'clicks', adjust points or time based on right or wrong answers
@@ -225,8 +225,8 @@ var timer = function() {
             correctBtn.addEventListener('click', function() {
                 score = score + 5;
                 rmvOldQ();
-                classPicker = classPicker + 1;
-                if (classPicker >= classAssign.length) {
+                correctAssignIndex = correctAssignIndex + 1;
+                if (correctAssignIndex >= correctAssign.length) {
                     stopTimer(timeInterval);
                 }
                 quiz(questionIndex);
@@ -235,8 +235,8 @@ var timer = function() {
             incorrectBtnsArr[0].addEventListener('click', function() {
                 timeLeft = timeLeft - 15;
                 rmvOldQ();
-                classPicker = classPicker + 1;
-                if (classPicker >= classAssign.length) {
+                correctAssignIndex = correctAssignIndex + 1;
+                if (correctAssignIndex >= correctAssign.length) {
                     stopTimer(timeInterval);
                 }
                 quiz(questionIndex);
@@ -245,8 +245,8 @@ var timer = function() {
             incorrectBtnsArr[1].addEventListener('click', function() {
                 timeLeft = timeLeft - 15;
                 rmvOldQ();
-                classPicker = classPicker +1;
-                if (classPicker >= classAssign.length) {
+                correctAssignIndex = correctAssignIndex +1;
+                if (correctAssignIndex >= correctAssign.length) {
                     stopTimer(timeInterval);
                 }
                 quiz(questionIndex);
@@ -255,8 +255,8 @@ var timer = function() {
             incorrectBtnsArr[2].addEventListener('click', function() {
                 timeLeft = timeLeft - 15;
                 rmvOldQ();
-                classPicker = classPicker +1;
-                if (classPicker >= classAssign.length) {
+                correctAssignIndex = correctAssignIndex +1;
+                if (correctAssignIndex >= correctAssign.length) {
                     stopTimer(timeInterval);}
                 quiz(questionIndex);
                 console.log("Score: " + score);
@@ -268,14 +268,14 @@ var timer = function() {
     startQuiz();
 }
     
-startButtonEl.addEventListener("click", timer);
+startButtonEl.addEventListener("click", startTimer);
 
 
 // What would the function look like to go to the HS form
 var getScoreInitials = function() {
     rmvOldQ();
     quizQuestionEl.textContent = "All done!";
-    PEl.textContent = "Your final score is 22."
+    pEl.textContent = "Your final score is 22."
     // look at taskinator modules to create the form here.
 }
 
@@ -316,46 +316,3 @@ var getScoreInitials = function() {
     
 
 
-
-
-//===========
-
-// ---
-
-// var question;
-// var ans1;
-// var ans2;
-// var ans3;
-// var ans4;
-
-// var qBank = [ 
-//     {
-//         question = "This is the first question?",
-//         ans1 = "This is the first answer.",
-//         ans2 ="This is the second answer.",
-//         ans3 = "This is the third answer.",
-//         ans4 = "This is the fourth question."
-//     },
-//     {
-//         question: "This is the second question?",
-//         ans1: "This is the first answer.",
-//         ans2: "This is the second answer.",
-//         ans3: "This is the third answer.",
-//         ans4: "This is the fourth question."
-//     },
-//     {
-//         question: "This is the third question?",
-//         ans1: "This is the first answer.",
-//         ans2: "This is the second answer.",
-//         ans3: "This is the third answer.",
-//         ans4: "This is the fourth question."
-//     },
-//     {
-//         question: "This is the fourth question?",
-//         ans1: "This is the first answer.",
-//         ans2: "This is the second answer.",
-//         ans3: "This is the third answer.",
-//         ans4: "This is the fourth question."
-//     }
-    
-// ]
