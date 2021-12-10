@@ -25,15 +25,14 @@
             </li>
             <li>
                 <button type="button" class="option" id="clear-btn">Clear high scores</button>
-            </li>
+            </li> 
         </ul>
     </main>
     <script>
         var loadScores = function() {
             // get scores and initials from localStorage
-            debugger;
-            var savedInitialsAndScores = localStorage.getItem("initialsAndScores");
-            savedInitialsAndScores = JSON.parse(savedInitialsAndScores);
+            // debugger;
+            var savedInitialsAndScores = JSON.parse(localStorage.getItem("initialsAndScores")) || [];
             console.log("savedInitialsAndScores = " + savedInitialsAndScores);
            
             var highScoreList = document.getElementById('high-score-list');
@@ -54,7 +53,7 @@
             localStorage.clear();
             window.location.href = 'high-score.html';
         }
-        clearBtn.addEventListener("click", clearHighScores());
+        clearBtn.addEventListener("click", clearHighScores);
         
 
         

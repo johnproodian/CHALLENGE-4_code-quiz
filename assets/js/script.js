@@ -55,7 +55,6 @@ var qBank = [
 
 // starting score for the user
 var  score = 0;
-var initialsAndScores = [];
 
 // get the various elements that will be dynamically manipulated to go through the quiz
 var quizQuestionEl = document.getElementById('quiz-question');
@@ -97,35 +96,39 @@ var stopTimer = function(a) {
                 event.preventDefault();
                 var initials = document.querySelector("input[name='initials']").value;
                 console.log(initials);
-                debugger;
+                // debugger;
                 var initScoObj = {
                     inits: initials,
                     sco: score
                 }
                 // debugger;
-                var previousInitialsAndScores = localStorage.getItem("initialsAndScores");
+                var previousInitialsAndScores = JSON.parse(localStorage.getItem("initialsAndScores"));
                 if (previousInitialsAndScores) {
-                    previousInitialsAndScores = JSON.parse(previousInitialsAndScores); // here is where the (or, a) problem lies --> issue was that
-                                                                                        // JSON has to parse something in object format...
-                    for (i = 0; i < previousInitialsAndScores; i++) {
-                        initialsAndScores.push(previousInitialsAndScores[i]);   // Seems here that the object that is previous initials and scores doesn't get pushed here...
-                    }
+                    previousInitialsAndScores.push(initScoObj);                             // But initScoObj DOES get pushed to initialsAndScores here...
+                    console.log("initialsAndScores: " + JSON.stringify(initialsAndScores));
+                    localStorage.setItem("initialsAndScores", JSON.stringify(previousInitialsAndScores))
+
+                    window.location.href = 'high-score.html';
+
+                //     previousInitialsAndScores = JSON.parse(previousInitialsAndScores); // here is where the (or, a) problem lies --> issue was that
+                //                                                                         // JSON has to parse something in object format...
+                //     for (i = 0; i < previousInitialsAndScores; i++) {
+                //         initialsAndScores.push(previousInitialsAndScores[i]);   // Seems here that the object that is previous initials and scores doesn't get pushed here...
+                //     }
+                } else {
+                    var initialsAndScores = [];
+                    initialsAndScores.push(initScoObj);
+                    localStorage.setItem("initialsAndScores", JSON.stringify(initialsAndScores))
+                    
+                    window.location.href = 'high-score.html';
                 }
 
-                initialsAndScores.push(initScoObj);                             // But initScoObj DOES get pushed to initialsAndScores here...
-                console.log("initialsAndScores: " + JSON.stringify(initialsAndScores));
-
+            
 
                 
-                // var savedInitialsAndScores = localStorage.getItem('initialsAndScores');
-                // console.log("saved scores = " + savedInitialsAndScores);
-                // if (savedInitialsAndScores) {
-                //     initialsAndScores.push(savedInitialsAndScores);
-                // }
-                initialsAndScores = JSON.stringify(initialsAndScores);
-                localStorage.setItem("initialsAndScores", initialsAndScores);       // This REPLACES the previous locally-stored initialsAndScores b/c the previous push didn't work...
 
-                window.location.href = 'high-score.html';
+
+               
     
             });
 };
@@ -246,26 +249,30 @@ var startQuiz = function() {
             quiz(questionIndex);
             console.log("Score: " + score);
         }
+        console.log(correctBtn);
 
-        correctBtn.addEventListener('click', function() {
-            score = score + 5;
-            rmvOldQ();
-            correctAssignIndex = correctAssignIndex + 1;
-            if (correctAssignIndex >= correctAssign.length) {
-                stopTimer(timeInterval);
-            }
-            quiz(questionIndex);
-            console.log("Score: " + score);
-        })
-        incorrectBtnsArr[0].addEventListener('click', function() {
-            incorrectClick();
-        })
-        incorrectBtnsArr[1].addEventListener('click', function() {
-            incorrectClick();
-        })
-        incorrectBtnsArr[2].addEventListener('click', function() {
-            incorrectClick();
-        })
+        if (correctBtn) {
+            correctBtn.addEventListener('click', function() {
+                score = score + 5;
+                rmvOldQ();
+                correctAssignIndex = correctAssignIndex + 1;
+                if (correctAssignIndex >= correctAssign.length) {
+                    stopTimer(timeInterval);
+                }
+                quiz(questionIndex);
+                console.log("Score: " + score);
+            })
+            incorrectBtnsArr[0].addEventListener('click', function() {
+                incorrectClick();
+            })
+            incorrectBtnsArr[1].addEventListener('click', function() {
+                incorrectClick();
+            })
+            incorrectBtnsArr[2].addEventListener('click', function() {
+                incorrectClick();
+            })
+        }
+        
     }
     quiz(questionIndex);
 }
