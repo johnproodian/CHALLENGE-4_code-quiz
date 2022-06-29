@@ -1,6 +1,6 @@
 # Code Quiz
 
-This application is a timed quiz on JavaScript fundamentals where time runs down faster if wrong answers are given. Additionally, scores are saved with initials that the user enters.
+This application is a timed quiz on the subject of JavaScript fundamentals where time runs down faster if wrong answers are given. Additionally, scores are saved with initials that the user enters.
 
 ## Built With
 * HTML
