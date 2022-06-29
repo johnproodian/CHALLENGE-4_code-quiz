@@ -8,7 +8,7 @@ This application is a timed quiz on the subject of JavaScript fundamentals where
 * JavaScript
 
 ## Website
-https://johnproodian.github.io/code-quiz-challenge/
+https://johnproodian.github.io/code-quiz/
 
 ## (Recently Learned) Skills Used
 * Creating variables (to store quiz questions)
